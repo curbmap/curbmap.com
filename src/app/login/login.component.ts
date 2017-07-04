@@ -54,24 +54,29 @@ export class LoginComponent implements OnInit {
         sendGet(this.http, {}, '/token', this.getToken, this.gotError).subscribe(response => {
             console.log(response);
             let headers = { 'content-type': 'application/x-www-form-urlencoded', 'X-CSRF-TOKEN': response, 'withCredentials': true};
-            sendPost(this.http, headers, $.param(this.loginForm.value), '/login', this.getLoginResponse, this.gotError).subscribe(loginResult => {
+            sendPost(this.http,
+              headers,
+              $.param(this.loginForm.value),
+              frontend + '/login',
+              this.getLoginResponse,
+              this.gotError).subscribe(loginResult => {
                     console.log(loginResult);
-                    if (loginResult != null) {
+                    if (loginResult === 'true') {
                         this.userInformation.setCsrf(response);
                         this.userInformation.setUsername(this.loginForm.value.username);
                         this.userInformation.setPassword(this.loginForm.value.password);
-                        this.router.navigate(['/in'], {skipLocationChange: true})
+                        this.router.navigate(['/in'], {skipLocationChange: true});
                     }
                 }
-            )
+            );
         });
 
     }
     getLoginResponse(r: Response) {
         if (r.url.toString().endsWith('error')) {
-            return null;
+            return Observable.from(['false']);
         } else {
-            return Observable.from([true]);
+            return Observable.from(['true']);
         }
     }
 
@@ -83,12 +88,12 @@ export class LoginComponent implements OnInit {
         return e.statusText;
     }
     gotUser(r: Response) {
-        console.log(r.json())
-        return Observable.from([true]);
+        console.log(r.json());
+        return Observable.from(['true']);
     }
     gotNotLoggedIn(e: Response) {
-        console.log('ERROR: '+e);
-        return null;
+        console.log('ERROR: ' + e);
+        return Observable.from(['false']);
     }
 
     onValueChanged(data?: any) {
@@ -116,12 +121,16 @@ export class LoginComponent implements OnInit {
         }
     }
     ngOnInit() {
-        sendGet(this.http, {}, frontend + '/user', this.gotUser, this.gotNotLoggedIn).subscribe((getUser)=>{
+        sendGet(this.http,
+          {},
+          frontend + '/user',
+          this.gotUser,
+          this.gotNotLoggedIn).subscribe((getUser) => {
             console.log(getUser);
-            if (getUser != null) {
+            if (getUser === 'true') {
                 this.router.navigate(['/in'], {skipLocationChange: true});
             }
-        })
+        });
 
     }
 

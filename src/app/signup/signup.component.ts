@@ -60,8 +60,18 @@ export class SignupComponent implements OnInit {
       // Do stuff
       this.navInformation.setNavLinks('Signup');
       this.signupForm = fb.group({
-        username: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(64)]],
-        password: ['', [Validators.required, Validators.minLength(9), Validators.maxLength(64), hasCapital(), hasLowercase(), hasSpecial(), hasNumber()]],
+        username: ['', [Validators.required,
+          Validators.minLength(6),
+          Validators.maxLength(64)]
+        ],
+        password: ['', [Validators.required,
+          Validators.minLength(9),
+          Validators.maxLength(64),
+          hasCapital(),
+          hasLowercase(),
+          hasSpecial(),
+          hasNumber()]
+        ],
         email: ['', [Validators.required, Validators.email]]
       });
       this.signupForm.valueChanges.subscribe(data => this.onValueChanged(data));
@@ -104,7 +114,7 @@ export class SignupComponent implements OnInit {
           this.displayEmailIncorrectInfo = true;
           break;
           default:
-          console.log("other error");
+          console.log('other error');
           break;
         }
       }

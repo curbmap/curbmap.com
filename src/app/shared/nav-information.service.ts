@@ -54,7 +54,7 @@ export class NavInformation {
                 {name: 'Home', address: '/in', active: 'active'},
                 {name: 'Logout', address: '/logout', active: ''}
             ]
-        )
+        );
     }
   }
 
