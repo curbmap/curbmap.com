@@ -1,0 +1,59 @@
+<div class="modal fade" id="newsModal" tabindex="-1" role="dialog" aria-labelledby="newsModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="newsModalLabel"><i class="fa fa-bullhorn fa-3" aria-hidden="true"></i>: <span id="newsTitle pull-right">News</span></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h4> Open Street Parking Restriction Specification</h4>
+        <p><b>Update:</b> moved to github on 6/30/2017, see more from our team <a href='https://github.com/curbmap'>here...</a>!
+        </p>
+        <p>
+        Join our effort to make a format for parking restriction cataloging.
+        This effort will make distributing, consuming, and organizing electronic
+        parking data a breeze!</p>
+        <p>
+            <a href="https://github.com/curbmap/Open-Street-Parking-Restriction-Specification">OSPRS</a>
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<header>
+    <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="#">
+            <img class="brand-image" src="img/curbmap.png" />
+        </a>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li *ngFor="let navitem of navLinks" class="nav-link {{navitem['active']}}">
+                    <a class="nav-link" [routerLink]="[navitem['address']]" skipLocationChange>{{navitem['name']}}</a>
+                </li>
+            </ul>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newsModal">News</button>
+        </div>
+    </nav>
+</header>
+<main>
+    <div class="curb"> &nbsp; </div>
+    <div class="above-curb"><router-outlet></router-outlet></div>
+</main>
+<footer>
+    <div class="rightfoot">
+        <a href="http://hackforla.org"><img src="img/hack-la-small.png"></a>
+    </div>
+    <div class="leftfoot">
+        Curbmap is civic-minded project created in collaboration with <br>
+        We will provide regular parking data back to the <a href="http://data.lacity.org">city of Los Angeles</a> for their initial support with open data.
+    </div>
+</footer>

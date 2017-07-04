@@ -1,0 +1,57 @@
+:host {
+}
+
+header {
+}
+
+main {
+  background: #53d9F4;
+  min-height: 500px;
+  width: 100%;
+  z-index: 0;
+  position: relative;
+}
+
+.curb {
+  z-index: 1;
+  background: url("img/curb.jpg") no-repeat;
+  -webkit-background-size: 100% 100%;
+  background-size: 100% 100%;
+  min-height: 500px;
+  width: 100%;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  opacity: 0.55;
+}
+
+.above-curb {
+  z-index: 100;
+  position: absolute;
+  padding: 25px;
+  left: 0px;
+  top: 0px;
+  background: transparent;
+  color: black;
+  height: 500px;
+  width: 100%;
+  overflow-y: scroll;
+}
+
+footer {
+  padding: 20px
+}
+
+footer img {
+  width: 50px;
+}
+
+footer .leftfoot {
+  text-align: right;
+  float: right;
+  width: 70%;
+}
+footer .rightfoot {
+  text-align: left;
+  float: right
+}

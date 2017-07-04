@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="card">
+    <h3 class="card-header">
+      Signup
+    </h3>
+    <div class="card-block">
+      <div class="alert alert-danger" *ngIf="displayUsernameTakenInfo">{{UsernameTakenInfo}}</div>
+      <div class="alert alert-danger" *ngIf="displayMissingInfo">{{MissingInfo}}</div>
+      <div class="alert alert-danger" *ngIf="displayEmailIncorrectInfo">{{EmailIncorrectInfo}}</div>
+      <div class="alert alert-danger" *ngIf="displayEmailTakenInfo">{{EmailTakenInfo}}</div>
+      <div class="alert alert-danger" *ngIf="displayPasswordIncorrectInfo">{{PasswordIncorrectInfo}}</div>
+      <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+              <input type="text" formControlName="username" class="form-control no-border" placeholder="username"  autocomplete="off" autocapitalize="none" autocorrect="off"/>
+          </li>
+          <li *ngIf="signupFormErrors.username" class="list-group-item alert alert-danger" [innerHTML]="signupFormErrors.username">
+          </li>
+          <li class="list-group-item">
+              <input type="password" formControlName="password" class="form-control no-border" placeholder="password"  autocomplete="off" autocapitalize="none" autocorrect="off"/>
+          </li>
+          <li *ngIf="signupFormErrors.password" class="list-group-item alert alert-danger" [innerHTML]="signupFormErrors.password">
+          </li>
+          <li class="list-group-item">
+              <input type="email" formControlName="email" class="form-control no-border" placeholder="email"  autocomplete="off" autocapitalize="none" autocorrect="off"/>
+          </li>
+          <li *ngIf="signupFormErrors.email" class="list-group-item alert alert-danger" [innerHTML]="signupFormErrors.email">
+          </li>
+          <li class="list-group-item">
+            <input type="submit" class="btn btn-success" value="signup">
+          </li>
+        </ul>
+      </form>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="card">
+    <h3 class="card-header">
+      Login
+    </h3>
+    <div class="card-block">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <input type="text" formControlName="username" class="form-control no-border" placeholder="username or email" autocomplete="off" autocapitalize="none" autocorrect="off" />
+          </li>
+          <li class="list-group-item">
+            <input type="password" formControlName="password" class="form-control no-border" placeholder="password"  autocomplete="off" autocapitalize="none" autocorrect="off" />
+          </li>
+          <li class="list-group-item form-check">
+            <label class="form-check-label">
+              <input type="checkbox" id="remember" name="remember" formControlName="remember" class="form-check-input"/>
+              <span *ngIf="remember">Save my login information on this computer</span>
+              <span *ngIf="!remember">Do not save my login information on this computer</span>
+            </label>
+          </li>
+          <li class="list-group-item">
+            <input type="submit" class="btn btn-success" value="login">
+          </li>
+        </ul>
+      </form>
+    </div>
+  </div>
+</div>

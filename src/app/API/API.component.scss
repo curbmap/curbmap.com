@@ -1,0 +1,32 @@
+
+div.leftmenu {
+  width: 25%;
+  height: 100%;
+  position:fixed;
+  float: left;
+  overflow: scroll;
+}
+
+div.container {
+  overflow: scroll
+}
+
+div#apiholder {
+  margin-left: 25%;
+  width: 72%;
+  height: 100vh;
+  overflow: scroll;
+}
+
+div.apiDefinition {
+  margin: 10px;
+  width: 100%;
+  padding: 20px;
+  position: relative;
+  overflow: scroll
+}
+
+div.apiParameters {
+  width: 100%;
+  overflow: scroll;
+}

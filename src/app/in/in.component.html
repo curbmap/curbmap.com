@@ -1,0 +1,19 @@
+<agm-map  #map id="map"
+          [disableDefaultUI]="false"
+          [latitude]="mapTopLeft.lat"
+          [longitude]="mapTopLeft.lng"
+          [disableDoubleClickZoom]="true"
+          [zoom]="zoom"
+          (mapDblClick)="doubleClicked($event)"
+          (centerChange)="centerChanged($event)"
+          (boundsChange)="boundsChanged($event)"
+          (idle)="enteredIdle()"
+>
+
+    <agm-polyline *ngFor="let polyline of polylines" [geodesic]="true" [strokeOpacity]="polyline.opacity" [strokeWeight]="polyline.weight" [strokeColor]="polyline.color">
+        <agm-polyline-point *ngFor="let linePoint of polyline.line" [latitude]="linePoint.lat" [longitude]="linePoint.lng">
+        </agm-polyline-point>
+    </agm-polyline>
+    <agm-marker *ngFor="let marker of markers" [longitude]="marker.lng" [latitude]="marker.lat" [iconUrl]="marker.url" [opacity]="marker.opacity">
+    </agm-marker>
+</agm-map>

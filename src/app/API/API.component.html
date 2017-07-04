@@ -1,0 +1,155 @@
+<div class="container" #containerHolder>
+    <div class="leftmenu">
+        <button class="btn btn-outline-primary" (click)="scrollApiTo('areaCircle')">/areaCircle</button><br>
+        <button class="btn btn-outline-primary" (click)="scrollApiTo('areaPolygon')">/areaPolygon</button><br>
+        <button class="btn btn-outline-primary" (click)="scrollApiTo('addPoint')">/addPoint</button>
+    </div>
+    <div class="apiholder" id="apiholder" #apiholder>
+        <div class="apiDefinition" id="areaCircle" #areaCircle>
+            <div class="row apiUrl">GET /areaCircle, URL encoded</div>
+            <div class="row apiParameters">
+                <table class="table table-active table-hover">
+                    <tr>
+                        <th>Parameter</th><th>Type</th><th>Value Range</th><th>Projection</th><th>Description</th>
+                    </tr>
+                    <tbody>
+                    <tr>
+                        <td>lat</td><td>double</td><td>[-90.0, +90.0] degrees</td><td>WGS84, 4326</td><td>Latitude</td>
+                    </tr>
+                    <tr>
+                        <td>lng</td><td>double</td><td>[-180.0, +180.0] degrees</td><td>WGS84, 4326</td><td>Longitude</td>
+                    </tr>
+                    <tr>
+                        <td>rad</td><td>double</td><td>[0, 500] meters</td><td>WGS84, 4326</td><td>Meter radius around point</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row apiResults">
+                <li>JSON Structure Response:</li><br>
+                <br>
+                <pre id="areaCircleResults" #circleAreaResults>
+            </pre>
+            </div>
+            <div class="row apiResults">
+                <table class="table table-active table-hover">
+                    <tr>
+                        <th>response element</th><th>valid values (subject to change)</th>
+                    </tr>
+                    <tr>
+                        <td>types</td><td>"sweep"=street sweeping<br> "red"=red zone, <br> "hyd"=hydrant<br> "ppd"=preferential parking district rule </td>
+                    </tr>
+                    <tr>
+                        <td>days</td><td>A 7-bit string, where the corresponding days are Sunday,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday<br>
+                        You might see something like 0101000 which means Mondays and Wednesdays or 1111111 which means all days.</td>
+                    </tr>
+                    <tr>
+                        <td>reliability score</td><td>A string value of a double probability score [0,1]</td>
+                    </tr>
+                    <tr>
+                        <td>start time</td><td>4 character string in 2400 time</td>
+                    </tr>
+                    <tr>
+                        <td>end time</td><td>4 character string in 2400 time format</td>
+                    </tr>
+                    <tr>
+                        <td>time limit</td><td>Optional so may be 0</td>
+                    </tr>
+                    <tr>
+                        <td>cost(dollars)</td><td>Optional so may be 0</td>
+                    </tr>
+                    <tr>
+                        <td>per(minutes)</td><td>Optional so may be 0</td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+        <div class="apiDefinition" id="areaPolygon" #areaPolygon>
+            <div class="row apiUrl">GET /areaPolygon, URL encoded</div>
+            <div class="row apiNotes">This is a logical improvement over the circle since it is an easier query to the DB and resolves only data that is used at the current zoom</div>
+            <div class="row apiParameters">
+                <table class="table table-active table-hover">
+                    <tr>
+                        <th>Parameter</th><th>Type</th><th>Value Range</th><th>Projection</th><th>Description</th>
+                    </tr>
+                    <tbody>
+                    <tr>
+                        <td>lat1</td><td>double</td><td>[-90.0, +90.0] degrees</td><td>WGS84, 4326</td><td>Latitude of top left corner of map</td>
+                    </tr>
+                    <tr>
+                        <td>lng1</td><td>double</td><td>[-180.0, +180.0] degrees</td><td>WGS84, 4326</td><td>Longitude of top left corner of map</td>
+                    </tr>
+                    <tr>
+                        <td>lat2</td><td>double</td><td>[-90.0, +90.0] degrees</td><td>WGS84, 4326</td><td>Latitude of bottom right corner of map</td>
+                    </tr>
+                    <tr>
+                        <td>lng2</td><td>double</td><td>[-180.0, +180.0] degrees</td><td>WGS84, 4326</td><td>Longitude of bottom right corner of map</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row apiResults">
+                Same JSON as /areaCircle results
+            </div>
+            <div class="row apiResults">
+                Same values as /areaCircle types
+            </div>
+
+        </div>
+        <div class="apiDefinition" id="addPoint" #addPoint>
+            <div class="row apiUrl">GET /addPoint, URL encoded</div>
+            <div class="row apiParameters">
+                <table class="table table-active table-hover">
+                    <tr>
+                        <th>Parameter</th><th>Type</th><th>Value Range</th><th>Specification</th><th>Description</th>
+                    </tr>
+                    <tbody>
+                    <tr>
+                        <td>lat</td><td>double</td><td>[-90.0, +90.0] degrees</td><td>WGS84, 4326</td><td>Latitude</td>
+                    </tr>
+                    <tr>
+                        <td>lng</td><td>double</td><td>[-180.0, +180.0] degrees</td><td>WGS84, 4326</td><td>Longitude</td>
+                    </tr>
+                    <tr>
+                        <td>rule</td><td>base64 encoded string</td><td>255 characters</td><td>See elements of rule set below</td><td>Restriction rule set</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row apiResults">
+                <li>JSON Structure Response:</li><br>
+                <br><br>
+                <pre id="addPointResults" #addPointResults></pre>
+            </div>
+            <div class="row apiResults">
+                <b>Remember to concatenate values with commas and base64 encode the string! So either a 4-string concatenation like: btoa("x,y,z,a") or a 6-string btoa("x,y,z,a,b,c")</b>
+                <br>
+                <table class="table table-active table-hover">
+                    <tr>
+                        <th>Value index</th><th>Possible values</th>
+                    </tr>
+                    <tr>
+                        <td>0</td><td>"sweep"=street sweeping<br> "rednp"=red zone no parking, <br> "redns"=red zone no stopping, <br> "np"=no parking no curb color, <br> "hyd"=hydrant<br> "ppd"=preferential parking district rule </td>
+                    </tr>
+                    <tr>
+                        <td>1</td><td>A 7-bit string, where the corresponding days are Sunday,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday<br>
+                        You might see something like 0101000 which means Mondays and Wednesdays or 1111111 which means all days.</td>
+                    </tr>
+                    <tr>
+                        <td>2</td><td>Beginning time of restriction in 0000-2400 time</td>
+                    </tr>
+                    <tr>
+                        <td>3</td><td>Ending time of restriction in 0000-2400 time</td>
+                    </tr>
+                    <tr>
+                        <td>4(optional)</td><td>Time limit to park in this location</td>
+                    </tr>
+                    <tr>
+                        <td>5 (optional) & 6(optional)</td><td> If 5 is present, 6 must be present. 5 is cost in dollars e.g. "0.25". 5 is per measurement of time in minutes "60" and multiples of that for hours and "1440" minutes for a day</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
